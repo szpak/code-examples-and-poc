@@ -5,12 +5,12 @@ import spock.lang.Specification
 import spock.lang.Unroll
 
 @TypeChecked
-class TestDummyForPitParametrizedSpockTest extends Specification{
+class CrashTestDummyForPitParametrizedSpockTest extends Specification{
 
-    def testDummyForPit = new TestDummyForPit()
+    def testDummyForPit = new CrashTestDummyForPit()
 
     @Unroll
-    def "should get list of lengths for given strings"(int input, int expectedResult) {
+    def "should get list of lengths (#expectedResult) for given strings (#input)"(int input, int expectedResult) {
         expect:
         testDummyForPit.returnParametrizedSpock(input) == expectedResult
 

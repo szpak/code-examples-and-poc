@@ -4,14 +4,14 @@ import org.junit.Test;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-public class TestDummyForPitTest {
+public class CrashTestDummyForPitTest {
 
     @Test
     public void shouldGenerateCoverageForJUnit() {
         //given
-        TestDummyForPit testDummyForPit = new TestDummyForPit();
+        CrashTestDummyForPit crashTestDummyForPit = new CrashTestDummyForPit();
         //when
-        int result = testDummyForPit.return1Junit();
+        int result = crashTestDummyForPit.return1Junit();
         //then
         assertThat(result).isEqualTo(1);
     }

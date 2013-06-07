@@ -5,13 +5,13 @@ import org.testng.annotations.Test;
 import static org.fest.assertions.Assertions.assertThat;
 
 @Test
-public class TestDummyForPitTestNGTest {
+public class CrashTestDummyForPitTestNGTest {
 
     public void shouldGenerateCoverageForTestNG() {
         //given
-        TestDummyForPit testDummyForPit = new TestDummyForPit();
+        CrashTestDummyForPit crashTestDummyForPit = new CrashTestDummyForPit();
         //when
-        int result = testDummyForPit.return2TestNG();
+        int result = crashTestDummyForPit.return2TestNG();
         //then
         assertThat(result).isEqualTo(2);
     }

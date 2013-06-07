@@ -1,6 +1,6 @@
 package info.solidsoft.rnd.pit.spock;
 
-public class TestDummyForPit {
+public class CrashTestDummyForPit {
 
     public int return1Junit() {
         return 1;

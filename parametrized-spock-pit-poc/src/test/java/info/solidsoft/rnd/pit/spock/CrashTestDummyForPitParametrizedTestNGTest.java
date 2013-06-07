@@ -5,14 +5,14 @@ import org.testng.annotations.Test;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-public class TestDummyForPitParametrizedTestNGTest {
+public class CrashTestDummyForPitParametrizedTestNGTest {
 
     @Test(dataProvider = "testInputValues")
     public void shouldGenerateCoverageForParametrizedTestNG(int input, int expectedResult) {
         //given
-        TestDummyForPit testDummyForPit = new TestDummyForPit();
+        CrashTestDummyForPit crashTestDummyForPit = new CrashTestDummyForPit();
         //when
-        int result = testDummyForPit.returnParametrizedTestNG(input);
+        int result = crashTestDummyForPit.returnParametrizedTestNG(input);
         //then
         assertThat(result).isEqualTo(expectedResult);
     }

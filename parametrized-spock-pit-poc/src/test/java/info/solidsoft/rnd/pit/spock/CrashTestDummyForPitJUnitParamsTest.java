@@ -9,15 +9,15 @@ import static junitparams.JUnitParamsRunner.$;
 import static org.fest.assertions.Assertions.assertThat;
 
 @RunWith(JUnitParamsRunner.class)
-public class TestDummyForPitJUnitParamsTest {
+public class CrashTestDummyForPitJUnitParamsTest {
 
     @Test
     @Parameters(method = "getTestInputValues")
     public void shouldGenerateCoverageForJUnitParams(int input, int expectedResult) {
         //given
-        TestDummyForPit testDummyForPit = new TestDummyForPit();
+        CrashTestDummyForPit crashTestDummyForPit = new CrashTestDummyForPit();
         //when
-        int result = testDummyForPit.returnJUnitParams(input);
+        int result = crashTestDummyForPit.returnJUnitParams(input);
         //then
         assertThat(result).isEqualTo(expectedResult);
     }

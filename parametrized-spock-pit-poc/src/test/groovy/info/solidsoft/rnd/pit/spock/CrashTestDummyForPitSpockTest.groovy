@@ -4,11 +4,11 @@ import groovy.transform.TypeChecked
 import spock.lang.Specification
 
 @TypeChecked
-class TestDummyForPitSpockTest extends Specification {
+class CrashTestDummyForPitSpockTest extends Specification {
 
     def "should generate coverage for return3Spock method in TestDummyForPit"() {
         given:
-        def testDummyForPit = new TestDummyForPit()
+        def testDummyForPit = new CrashTestDummyForPit()
 
         when:
         int result = testDummyForPit.return3Spock()
