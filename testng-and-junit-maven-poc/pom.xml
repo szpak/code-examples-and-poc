@@ -9,7 +9,7 @@
     </prerequisites>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <surefire.version>2.13</surefire.version>
+        <surefire.version>2.15</surefire.version>
     </properties>
     <build>
         <plugins>
