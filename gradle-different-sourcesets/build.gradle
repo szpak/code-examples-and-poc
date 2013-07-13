@@ -1,0 +1,35 @@
+apply plugin: 'groovy'
+apply plugin: 'idea'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+sourceSets {
+    integrationTest {
+        java.srcDir file('src/integrationTest/java')
+        resources.srcDir file('src/integrationTest/resources')
+    }
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.1.6:indy'
+
+    testCompile "junit:junit:4.11"
+    testCompile 'org.assertj:assertj-core:1.3.0'
+    testCompile "org.spockframework:spock-core:0.7-groovy-2.0"
+
+    integrationTestCompile sourceSets.main.output
+    integrationTestCompile configurations.testCompile
+    integrationTestCompile sourceSets.test.output
+    integrationTestRuntime configurations.testRuntime
+}
+
+task integrationTest(type: org.gradle.api.tasks.testing.Test, dependsOn: jar) {
+    testClassesDir = sourceSets.integrationTest.output.classesDir
+    classpath = sourceSets.integrationTest.runtimeClasspath
+    systemProperties['jar.path'] = jar.archivePath
+}
+
+check.dependsOn integrationTest
