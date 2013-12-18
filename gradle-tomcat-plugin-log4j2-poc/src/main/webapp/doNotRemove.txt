@@ -1,0 +1,1 @@
+Required to keep webapp directory in Git to satisfy gradle-tomcat-plugin.
