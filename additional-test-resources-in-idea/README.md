@@ -1,0 +1,1 @@
+Simple project reproducing problem with ignoring resource directories in additional sourceSet defined in Gradle - [IDEA-128966](https://youtrack.jetbrains.com/issue/IDEA-128966)

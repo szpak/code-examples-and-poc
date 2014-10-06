@@ -1,0 +1,37 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    test {
+        resources.srcDir file('src/test/res2')  //works
+    }
+    funcTest {
+        java.srcDir file('src/funcTest/java')
+        resources.srcDir file('src/funcTest/resources')  //TODO: doesn't work in Idea
+//        resources.srcDir file('src/integration-test/res2')  //doesn't work as well
+    }
+}
+
+configurations {
+    funcTestCompile.extendsFrom testCompile
+    funcTestRuntime.extendsFrom testRuntime
+}
+
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.5'
+
+    testCompile 'junit:junit:4.11'
+
+    funcTestCompile sourceSets.main.output
+    funcTestCompile sourceSets.test.output
+}
+
+task funcTest(type: Test, dependsOn: jar) {
+    testClassesDir = sourceSets.funcTest.output.classesDir
+    classpath = sourceSets.funcTest.runtimeClasspath
+}
+
+check.dependsOn funcTest
