@@ -7,6 +7,28 @@
  * user guide available at http://gradle.org/docs/2.2/userguide/tutorial_groovy_projects.html
  */
 
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'pl.allegro.tech.build', name: 'axion-release-plugin', version: '0.9.9'
+    }
+}
+
+apply plugin: 'pl.allegro.tech.build.axion-release'
+
+// configure version
+scmVersion {
+    tag {
+        prefix = 'axion'
+    }
+}
+
+// make our version available to all
+project.version = scmVersion.version
+
 // Apply the groovy plugin to add support for Groovy
 apply plugin: 'groovy'
 
