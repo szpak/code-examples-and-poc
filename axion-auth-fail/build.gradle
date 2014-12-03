@@ -21,6 +21,8 @@ apply plugin: 'pl.allegro.tech.build.axion-release'
 
 // configure version
 scmVersion {
+    println project.rootDir.parentFile	//looks fine, but doesn't work
+    repositoryDir = project.rootDir.parentFile
     tag {
         prefix = 'axion'
     }
