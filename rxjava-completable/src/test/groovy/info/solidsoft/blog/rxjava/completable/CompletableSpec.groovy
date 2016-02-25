@@ -38,6 +38,16 @@ class CompletableSpec extends Specification {
             job2.executed
     }
 
+    def "should execute two tasks (old way2)"() {
+        given:
+            AbstractJobExecuter completable = new Observable2JobExecuter(job1, job2)
+        when:
+            completable.execute()
+        then:
+            job1.executed
+            job2.executed
+    }
+
     def "should execute two tasks (future)"() {
         given:
             AbstractJobExecuter completable = new FutureJobExecutor(job1, job2)
