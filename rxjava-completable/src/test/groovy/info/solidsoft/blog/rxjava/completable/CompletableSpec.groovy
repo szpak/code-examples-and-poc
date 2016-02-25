@@ -4,7 +4,9 @@ import org.junit.ClassRule
 import org.junit.contrib.java.lang.system.RestoreSystemProperties
 import spock.lang.Shared
 import spock.lang.Specification
+import spock.lang.Unroll
 
+@Unroll
 class CompletableSpec extends Specification {
 
     @ClassRule
@@ -18,43 +20,19 @@ class CompletableSpec extends Specification {
         System.setProperty("org.slf4j.simpleLogger.showDateTime", "true")
     }
 
-    def "should execute two tasks"() {
+    def "should execute two tasks (#executorName)"() {
         given:
-            AbstractJobExecuter completable = new CompletableJobExecutor(this.job1, job2)
+            JobExecutor executor = executorClosure(job1, job2)
         when:
-            completable.execute()
+            executor.execute()
         then:
             job1.executed
             job2.executed
-    }
-
-    def "should execute two tasks (old way)"() {
-        given:
-            AbstractJobExecuter completable = new ObservableJobExecuter(job1, job2)
-        when:
-            completable.execute()
-        then:
-            job1.executed
-            job2.executed
-    }
-
-    def "should execute two tasks (old way2)"() {
-        given:
-            AbstractJobExecuter completable = new Observable2JobExecuter(job1, job2)
-        when:
-            completable.execute()
-        then:
-            job1.executed
-            job2.executed
-    }
-
-    def "should execute two tasks (future)"() {
-        given:
-            AbstractJobExecuter completable = new FutureJobExecutor(job1, job2)
-        when:
-            completable.execute()
-        then:
-            job1.executed
-            job2.executed
+        where:
+            executorName  | executorClosure
+            "future"      | { j1, j2 -> new FutureJobExecutor(j1, j2) }
+            "observable1" | { j1, j2 -> new ObservableJobExecuter(j1, j2) }
+            "observable2" | { j1, j2 -> new Observable2JobExecuter(j1, j2) }
+            "completable" | { j1, j2 -> new CompletableJobExecutor(j1, j2) }
     }
 }
