@@ -1,0 +1,18 @@
+plugins {
+    id 'java-library'
+}
+
+dependencies {
+    testCompile 'org.junit.vintage:junit-vintage-engine:5.1.0'  //for JUnit 4.12 test execution
+    testCompile 'org.mockito:mockito-core:2.17.0'
+    testCompile 'org.mockito:mockito-junit-jupiter:2.17.0'
+    testCompile 'org.assertj:assertj-core:3.9.1'
+    testCompile 'info.solidsoft.mockito:mockito-java8:2.3.0'
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
