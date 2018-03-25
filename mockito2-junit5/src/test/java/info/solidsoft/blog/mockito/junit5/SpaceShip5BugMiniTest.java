@@ -1,19 +1,16 @@
 package info.solidsoft.blog.mockito.junit5;
 
-import info.solidsoft.mockito.java8.api.WithBDDMockito;
-import org.assertj.core.api.WithAssertions;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-public class SpaceShipTest implements WithAssertions, WithBDDMockito {
+import static org.assertj.core.api.Assertions.assertThat;
 
-    @Rule
-    public MockitoRule rule = MockitoJUnit.rule();
-    
+@ExtendWith(MockitoExtension.class)
+public class SpaceShip5BugMiniTest {
+
     @InjectMocks
     private SpaceShip spaceShip;
 
@@ -27,7 +24,7 @@ public class SpaceShipTest implements WithAssertions, WithBDDMockito {
     public void shouldInjectMocks() {
         assertThat(tacticalStation).isNotNull();
         assertThat(operationsStation).isNotNull();
-        assertThat(spaceShip.getTacticalStation()).isEqualTo(tacticalStation);
+        assertThat(spaceShip.getTacticalStation()).isEqualTo(tacticalStation);  //Bug - different mocks are use in @Mock and @InjectMock
         assertThat(spaceShip.getOperationsStation()).isEqualTo(operationsStation);
     }
 }
