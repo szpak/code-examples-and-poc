@@ -9,7 +9,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-public class SpaceShipTest implements WithAssertions, WithBDDMockito {
+public class SpaceShipJunit4Test implements WithAssertions, WithBDDMockito {
 
     @Rule
     public MockitoRule rule = MockitoJUnit.rule();
@@ -25,6 +25,7 @@ public class SpaceShipTest implements WithAssertions, WithBDDMockito {
 
     @Test
     public void shouldInjectMocks() {
+        assertThat(spaceShip).isNotNull();
         assertThat(tacticalStation).isNotNull();
         assertThat(operationsStation).isNotNull();
         assertThat(spaceShip.getTacticalStation()).isEqualTo(tacticalStation);
