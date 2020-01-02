@@ -1,0 +1,30 @@
+plugins {
+    id 'groovy'
+}
+
+group = 'info.solidsoft.blog.spock2-migration'
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.spockframework:spock-core:2.0-M1-groovy-2.5'
+    //Required only to use JUnit 4 @Rule/@ClassRule
+    testImplementation 'org.spockframework:spock-junit4:2.0-M1-groovy-2.5'
+}
+
+test {
+    //Use JUnit Platform for tests
+    useJUnitPlatform()
+
+    //Detect wrong test configuration - workaround for https://github.com/gradle/gradle/issues/7452
+    afterSuite { desc, result ->
+        if (!desc.parent) {
+            if (result.testCount == 0) {
+                throw new IllegalStateException("No tests were found. Failing the build")
+            }
+        }
+    }
+}
