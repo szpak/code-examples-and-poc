@@ -1,0 +1,41 @@
+plugins {
+    id 'groovy'
+}
+
+group = 'info.solidsoft.blog.spock2-no-junit4-gradle'
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+//    mavenLocal()
+    mavenCentral()
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+}
+
+String spockVersion = "2.0-groovy-3.0-SNAPSHOT"
+//String spockVersion = "2.0-M2-groovy-3.0"
+
+dependencies {
+    testImplementation("org.spockframework:spock-core:${spockVersion}") {
+        exclude group: 'junit', module: 'junit'   //TODO: Comment out to have Gradle fail on failing test
+        exclude group: 'org.junit.platform', module: 'junit-platform-engine'    //Waiting for https://github.com/spockframework/spock/pull/1107 to be merged
+    }
+    testImplementation("org.junit.platform:junit-platform-engine:1.6.1")
+}
+
+test {
+    useJUnitPlatform()
+
+    afterTest { desc, result ->
+        logger.quiet "Executing test ${desc.name} [${desc.className}] with result: ${result.resultType}"
+    }
+
+    //Detect wrong test configuration - workaround for https://github.com/gradle/gradle/issues/7452
+    afterSuite { desc, result ->
+        if (!desc.parent) {
+            if (result.testCount == 0) {
+                logger.warn("No tests were found. Should fail the build")
+//                throw new IllegalStateException("No tests were found. Failing the build")
+            }
+        }
+    }
+}
