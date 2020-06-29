@@ -10,9 +10,9 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.spockframework:spock-core:2.0-M1-groovy-2.5'
+    testImplementation 'org.spockframework:spock-core:2.0-M3-groovy-2.5'
     //Required only to use JUnit 4 @Rule/@ClassRule
-    testImplementation 'org.spockframework:spock-junit4:2.0-M1-groovy-2.5'
+    testImplementation 'org.spockframework:spock-junit4:2.0-M3-groovy-2.5'
 }
 
 test {
