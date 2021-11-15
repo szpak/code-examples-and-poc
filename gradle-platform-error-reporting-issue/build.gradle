@@ -1,0 +1,26 @@
+plugins {
+    id 'groovy'
+}
+
+group = 'info.solidsoft.blog.samples'
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+String spockVersion = "2.0-groovy-3.0"
+
+dependencies {
+    testImplementation "org.spockframework:spock-core:${spockVersion}"
+}
+
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+
+    afterSuite { desc, result ->
+
+            //In at least one test result should be 1 total test count
+            logger.lifecycle("Execute '${desc}' ${result.testCount} test(s)")
+    }
+}
