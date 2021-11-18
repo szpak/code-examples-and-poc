@@ -13,11 +13,8 @@ repositories {
 
 String groovyVersion = "4.0.0-beta-2"
 //String groovyVersion = "4.0.0-SNAPSHOT"
-//String groovyVersion = "3.0.9"
-//String groovyVersion = "2.5.11"
 
 String spockVersion = "2.0-groovy-3.0"
-//String spockVersion = "2.0-groovy-2.5"
 
 dependencies {
     testImplementation("org.spockframework:spock-core:${spockVersion}") {
@@ -38,5 +35,5 @@ tasks.withType(Test).configureEach {
     testLogging {
         events "passed", "skipped", "failed"
     }
-
 }
+
