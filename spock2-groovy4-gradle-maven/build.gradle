@@ -1,0 +1,39 @@
+plugins {
+    id 'groovy'
+}
+
+group = 'info.solidsoft.blog.spock2-groovy4'
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+//    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }    //only for Groovy SNAPSHOTs
+}
+
+String groovyVersion = "4.0.0-beta-2"
+//String groovyVersion = "4.0.0-SNAPSHOT"
+
+String spockVersion = "2.0-groovy-3.0"
+
+dependencies {
+    testImplementation("org.spockframework:spock-core:${spockVersion}") {
+        exclude group: 'org.codehaus.groovy'    //to do not have conflicting Groovy versions - Groovy 4 changed groupId from "org.codehaus.groovy" to "org.apache.groovy"
+    }
+    testImplementation "org.apache.groovy:groovy:${groovyVersion}"
+}
+
+tasks.withType(GroovyCompile).configureEach {
+//    options.compilerArgs.add('-Dspock.iKnowWhatImDoing.disableGroovyVersionCheck=true')   //doesn't work
+
+    options.forkOptions.jvmArgs << '-Dspock.iKnowWhatImDoing.disableGroovyVersionCheck=true'    //ok
+}
+
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
