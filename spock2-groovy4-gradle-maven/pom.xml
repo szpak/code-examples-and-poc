@@ -13,7 +13,7 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
 
-        <spock.version>2.0-groovy-3.0</spock.version>
+        <spock.version>2.2-M3-groovy-4.0</spock.version>
     </properties>
 
     <build>
@@ -37,33 +37,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M4</version>
+                <version>3.0.0-M7</version>
                 <configuration>
                     <includes>
                         <include>**/*Spec.java</include> <!-- Yes, .java extension -->
                         <include>**/*Test.java</include> <!-- Just in case of having also "normal" JUnit tests -->
                     </includes>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>properties-maven-plugin</artifactId>
-                <version>1.0.0</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>set-system-properties</goal>
-                        </goals>
-                        <configuration>
-                            <properties>
-                                <property>
-                                    <name>spock.iKnowWhatImDoing.disableGroovyVersionCheck</name>
-                                    <value>true</value>
-                                </property>
-                            </properties>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
@@ -85,7 +65,7 @@
         <dependency>
             <groupId>org.apache.groovy</groupId>
             <artifactId>groovy</artifactId>
-            <version>4.0.0-beta-2</version>
+            <version>4.0.4</version>
         </dependency>
     </dependencies>
 </project>

@@ -11,8 +11,8 @@ repositories {
 //    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }    //only for Groovy SNAPSHOTs
 }
 
-String groovyVersion = "4.0.1"
-String spockVersion = "2.2-M1-groovy-4.0"
+String groovyVersion = "4.0.4"
+String spockVersion = "2.2-M3-groovy-4.0"
 
 dependencies {
     testImplementation("org.spockframework:spock-core:${spockVersion}") {

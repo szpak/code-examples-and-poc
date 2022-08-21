@@ -9,4 +9,11 @@ class SimpleSpec extends Specification {
             GroovySystem.getShortVersion() == "4.0"
     }
 
+    void "should verify parametrized tests execution"() {
+        expect:
+            number > 0
+        where:
+            number << [1, 2]
+    }
+
 }
