@@ -1,6 +1,6 @@
 # record + lombok + groovy == compilation error
 
-Simple reproducer.
+Simple reproducer for https://issues.apache.org/jira/browse/GROOVY-10937
 
 Call: `./mvnw test-compile` with JDK 17 to get:
 
